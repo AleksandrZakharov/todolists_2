@@ -12,7 +12,6 @@ User.find_by!(username: "Trump").create_profile(gender: "M", birth_year: 1946, f
 User.find_by!(username: "Carson").create_profile(gender: "M", birth_year: 1951, first_name: "Ben", last_name: "Carson")
 User.find_by!(username: "Clinton").create_profile(gender: "F", birth_year: 1947, first_name: "Hillary", last_name: "Clinton")
 
-User.find_by!(username: "Fiorina")
-User.find_by!(username: "Trump")
-User.find_by!(username: "Carson")
-User.find_by!(username: "Clinton")
+
+
+User.all.each { |u| u.todo_lists.create(list_name: "#{u.username}", list_due_date: "#{Date.today}")}
