@@ -14,4 +14,11 @@ User.find_by!(username: "Clinton").create_profile(gender: "female", birth_year: 
 
 
 
-User.all.each { |u| u.todo_lists.create(list_name: "#{u.username}", list_due_date: Date.today + 1.year)}
+User.all.each { |u| 
+	u.todo_lists.create!(list_name: "#{u.username}", list_due_date: Date.today + 1.year)
+	u.todo_lists.all.each { |l|
+		for i in 1..5
+			l.todo_items.create!(due_date: Date.today + 1.year, title: "#{l.list_name}" + " #{i}", description: " #{i}" + "#{l.list_name}", completed: "false")
+		end
+	}
+}
